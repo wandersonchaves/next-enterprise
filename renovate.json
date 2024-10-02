@@ -6,7 +6,9 @@
   "packageRules": [
     {
       "enabled": false,
-      "matchPackagePatterns": ["*"]
+      "matchPackagePatterns": [
+        "*"
+      ]
     }
   ],
   "vulnerabilityAlerts": {

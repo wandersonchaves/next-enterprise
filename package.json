@@ -20,7 +20,21 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "preinstall": "npx npm-only-allow@latest --PM yarn",
     "postinstall": "npx patch-package -y",
-    "coupling-graph": "npx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.js|reset.d.ts|prettier.config.js|postcss.config.js|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|e2e/|README.md|.storybook/|.eslintrc.js' --image graph.svg"
+    "coupling-graph": "npx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.js|reset.d.ts|prettier.config.js|.prettierrc|postcss.config.js|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|e2e/|README.md|.storybook/|.eslintrc.js' --image graph.svg",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "prepare": "husky"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{jsx,js,ts,tsx,html,css}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.2.3",
@@ -48,6 +62,8 @@
     "@t3-oss/env-nextjs": "^0.10.1",
     "@vercel/otel": "^1.8.3",
     "class-variance-authority": "^0.7.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "lodash": "^4.17.21",
     "next": "^14.2.3",
     "next-compose-plugins": "^2.2.1",
@@ -105,7 +121,7 @@
     "patch-package": "^8.0.0",
     "postcss": "^8.4.31",
     "postinstall-postinstall": "^2.1.0",
-    "prettier": "3.0.3",
+    "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.5.7",
     "semantic-release": "^22.0.8",
     "storybook": "^7.5.3",
